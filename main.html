@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./main.css">
+    <script src="./buttonClick.js" defer></script>
+    <script src="./timer.js" defer></script>
+    <script src="./submit.js" defer></script>
+    <script src="./nextLevel.js" defer></script>
+    <script src="./congrats.js" defer></script>
+    <script src="./finalShow.js" defer></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+<div class="bg-[#0d1224] px-2 py-2 h-screen">
+
+    <div class="relative px-3 isolate pt-5 lg:px-8">
+        <div class="absolute inset-x-0 overflow-hidden -top-40 -z-10 transform-gpu blur-3xl sm:-top-80" aria-hidden="true">
+          <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[50deg] bg-gradient-to-tr from-[#ac2962] to-[#4651b9] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+
+    <div class="mainFlex flex">
+        <div class="timerPlate">
+            <img id="userImage" src="./Windows_10_Default_Profile_Picture.svg.png" alt="">
+            <div class="nameField">
+                
+            </div>
+            <h1 id="yourTime">YOUR TIME</h1>
+            <h1 class="timerOne">00:00:00:000</h1>
+
+            <div class="hearContainer">
+            <h1 id="livesSet">LIVES</h1>
+            <div class="hearts">
+                
+            </div>
+            </div>
+
+            <div class="levelContainer">
+               
+                
+            </div>
+
+        </div>
+   
+    <div class="mainGamePlate">
+
+        <div class="errorMessage" >
+            
+        </div>
+    
+    <div class="gamePlate">
+        <ul class="gamePlateUl">
+           
+        </ul>
+    </div>
+
+    <div class="containerValues">
+        <ul class="values">
+            <li><button class="carrieValues">1</button></li>
+            <li><button class="carrieValues">2</button></li>
+            <li><button class="carrieValues">3</button></li>
+            <li><button class="carrieValues">4</button></li>
+            <li><button class="carrieValues">5</button></li>
+        </ul>
+    </div>
+    </div>
+
+    <div class="objectDetails">
+        
+    </div>
+
+    <div class="gameOver" style="display: none;">
+        <div class="gameOverMessage2 bg-[#12172a] border border-[#555968] shadow dark:bg-gray-800 dark:border-gray-700">
+            <h1 class="campingOverTitle">Your Game is </h1>
+            <h1 class="gripdPlate2 bg-gradient-to-r from-[#53a2fe] to-[#fb006e] inline-block text-transparent bg-clip-text"> Over</h1>
+           
+            <div class="gameOverPic2"></div>
+    
+            <h4 class="timerOne">YOUR TIME</h4>
+            <div class="finalTime">
+                
+            </div>
+
+            <input type="button" class="submitButton" id="playAgain" value="Play Again">
+            <input type="button" class="submitButton" id="newGame" value="New Game">
+    
+            <p>*If you want go another round click play again or if you want to start new game click new game button. Don't reload your browser.</p>
+    
+        </div>
+    </div>
+
+    <div class="gameWin" style="display: none;">
+        <div class="gameWinMessage bg-[#12172a] border border-[#555968] shadow dark:bg-gray-800 dark:border-gray-700">
+            <h1 class="timerOne gripdPlate3">You <span class="bg-gradient-to-r from-[#53a2fe] to-[#a57af8] inline-block text-transparent bg-clip-text"> Won</span></h1>
+           
+            <img class="winningStar" src="./animations/Icon-Reward-unscreen.gif" alt="">
+    
+            <h4 class="timerOne">YOUR WINNING TIME</h4>
+            <div class="finalWin">
+                
+            </div>
+
+            <input type="button" class="submitButton" id="playAgainWin" value="Play Again">
+            <input type="button" class="submitButton" id="newGameWin" value="New Game">
+    
+            <p>*If you want go another round click play again or if you want to start new game click new game button. Don't reload your browser.</p>
+    
+        </div>
+    </div>
+
+    <div class="campaingOver" style="display: none;">
+        <div class="gameOverMessage bg-[#12172a] border border-[#555968] shadow dark:bg-gray-800 dark:border-gray-700">
+            <h1 class="campingOverTitle">Campaign </h1>
+            <h1 class="gripdPlate2 bg-gradient-to-r from-[#53a2fe] to-[#fb006e] inline-block text-transparent bg-clip-text"> Over</h1>
+           
+            <div class="gameOverPic"></div>
+            <h4 class="timerOne">YOUR TIME</h4>
+            <div class="finalCampaing">
+                
+            </div>
+            <input type="button" class="submitButton" id="newCampaing" value="New Game">
+
+        </div>
+    </div>
+
+    <div class="campaingWin" style="display: none;">
+       
+    </div>
+
+    <div class="PlayAgainMessage" style="display: none;">
+     
+    </div>
+
+    <div class="contragulations" style="display: none;">
+    
+    </div>
+
+    <div class="leadeboardPallet" style="display: none;">
+
+        <div class="leaderBoardStyle bg-[#12172a] border border-[#555968] shadow dark:bg-gray-800 dark:border-gray-700">
+            <h1 class="timerOne gripdPlate4"><span class="bg-gradient-to-r from-[#f6c02a] to-[#a57af8] inline-block text-transparent bg-clip-text"> Leaderboard</span></h1>
+           
+            <img id="congratsPic" class="winningStar" src="./animations/Podium-Burst-Animation-unscreen.gif" alt="">
+        
+             <ul class="winnignDetails">
+                <p>Complete all campaing Levels to add leaderBoard.</p>
+            </ul>
+            
+            <input type="button" class="submitButton" id="closeButton" value="Close">
+        
+        </div>
+    </div>
+
+    <div class="aboutDetails" style="display: none;">
+
+        <div class="aboutStyle bg-[#12172a] border border-[#555968] shadow dark:bg-gray-800 dark:border-gray-700">
+            <h1 class="timerOne gripdPlate4"><span class="bg-gradient-to-r from-[#d1d6e6] to-[#64bbfc] inline-block text-transparent bg-clip-text"> How to Play</span></h1>
+        
+        <p>In this grid, each cell can contain any number from 1 to 10. However, a number once used in a cell cannot be repeated within that cell's row and column. Failure to comply results in the loss of a life<br>
+            The game comprises two primary modes: Campaign and Free Roam. The "Campaign" mode consists of four levels, and upon winning all of them, your name will be added to the leaderboard. In "Free Roam" mode, you have the freedom to select and play columns and rows as you desire.</p>
+        
+            
+            <input type="button" class="submitButton" id="aboutClose" value="Close">
+        
+        </div>
+    </div>
+
+    </div>
+</div>
+</div>
+
+
+
+<div class="startingMessage">
+    <div class="actualMessage bg-[#12172a] border border-[#555968] shadow dark:bg-gray-800 dark:border-gray-700 ">
+        <h1 class="WelcomeNote">Welcome to the </h1>
+        <h1 class="gripdPlate bg-gradient-to-r from-[#53a2fe] to-[#a57af8] inline-block text-transparent bg-clip-text"> Grid</h1>
+        <form action="" class="sumbitForm">
+        <input type="text" class="" id="inputText" placeholder="Your name" name="userName" maxlength="8" required ><span id="userLength">8</span>
+        <div class="rowsColunms">
+        <input type="number" class="inputField" id="inputField1" placeholder="Rows:(3-6)" name="rowsCount" min="3" max="6" required>
+        <input type="number" class="inputField" id="inputField2" placeholder="Columns:(3-6)" name="colunmCount" min="3" max="6" required>
+
+        <div>
+        <input type="file" id="imageUploader" class="inputField">
+        </div>
+
+        <div>
+            <div>
+            <input type="button" id="campaing" class="submitButton backChange" value="Campaign">
+            <input type="button" id="freeMode" class="submitButton backAdd" value="Free Mode">
+        </div>
+            <input type="submit" class="submitButton" value="Start Game">
+        </div>
+        <div class="symbols">
+        
+        <button id="questionMark" type="button"><img src="./icons/icons8-question-mark-45.png" alt=""></button>
+        <p>*Dont reload your browser during play time otherwise lost your all saved progress.</p>
+        <button id="showLeaderBoard" type="button"><img src="./icons/icons8-laurel-wreath-45.png" alt=""></button>
+    </div>
+    </form>
+    </div>
+</div>
+
+</body>
+</html>
